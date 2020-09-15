@@ -1,0 +1,4 @@
+Flask>=1.0.2
+Flask-RESTful>=0.3.7
+Flask-MySQL>=1.4.0
+nltk>=3.4 

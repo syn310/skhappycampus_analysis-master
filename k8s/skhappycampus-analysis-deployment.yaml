@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skhappycampus-analysis-deployment
+  labels:
+    app: skhappycampus-analysis
+spec:
+  replicas: 2
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      run: skhappycampus-analysis
+  template:
+    metadata: 
+      labels:
+        run: skhappycampus-analysis
+    spec:
+      containers:
+      - name: skhappycampus-analysis
+        image: skcc-happycam-registry.cloudzcp.io/skhappycampus/skhappycampus-analysis:1
+        ports: 
+        - containerPort: 80
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "400Mi"
+            cpu: "100m"
+          limits:
+            memory: "800Mi"
+            cpu: "200m"
